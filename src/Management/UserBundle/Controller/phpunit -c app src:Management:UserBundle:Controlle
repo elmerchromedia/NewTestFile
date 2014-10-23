@@ -1,3 +1,8 @@
+phpunit -c app src/Management/UserBundle/Controller/DefaultControllerTest.php
+
+
+
+
 <?php
 
 namespace Management\UserBundle\Controller;
@@ -13,68 +18,39 @@ use Management\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
-
 use Management\UserBundle\Controller\DefaultController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
 
-    public function testIndexAction()
+    public function testIndexAction(Request $req)
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/login');
+        /*$client = static::createClient();
 
-        // correct login flow
-        // test we are in the login page and status code is 200
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Login Now")')->count());
-      
-        $form = $crawler->selectButton('submit')->form(array(
-         'login[email]'  => 'elmer.malinao@chromedia.com',
-         'login[password]'  => 'elmer123',
-       ));
+        // goes to the secure page
+        $crawler = $client->request`ST', '/login');
+
+        // redirects to the login page
+        $crawler = $client->followRedirect('login');
+
+        // submits the login form
+        $form = $crawler->selectButton('login')->form(array('_email' => 'admin', '_password' => 'adminpass'));
         $client->submit($form);
-        $crawler = $client->getRequest('dashboard'); // "/" page
-    }
-    public function testSignupAction() 
-    {
-      $client = static::createClient();
-        $crawler = $client->request('GET', '/signup');
 
-        // correct login flow
-        // test we are in the login page and status code is 200
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Sign Up")')->count());
-      
-        $form = $crawler->selectButton('signup[save]')->form(array(
-         'signup[email]'  => 'elmer123',
-         'signup[password][first]'  => 'elmer123',
-         'signup[password][second]'  => 'elmer123',
-         'signup[firstname]'  => 'elmer123',
-         'signup[lastname]'  => 'elmer123',
-       ));
-        $client->submit($form);
-        $crawler = $client->getRequest('signup'); // "/" page  
-    }
-    public function testdashboardAction()
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/login');
+        // redirect to the original page (but now authenticated)
+        $crawler = $client->followRedirect('dashboard');
 
-        // correct login flow
-        // test we are in the login page and status code is 200
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Login Now")')->count());
-      
-        $form = $crawler->selectButton('submit')->form(array(
-         'login[email]'  => 'elmer.malinao@chromedia.com',
-         'login[password]'  => 'elmer123',
-       ));
-        $client->submit($form);
-        //$crawler = $client->followRedirect('dashboard'); // "/" page
-        $crawler = $client->getRequest('dashboard'); // "/" page
-    }
+        // check that the page is the right one
+        $this->assertCount(1, $crawler->filter('table.title:contains("Username")'));
 
-    /*public function testIndexAction()
-    {
+        // click on the secure link
+        $link = $crawler->selectLink('dashboard')->link();
+        $crawler = $client->click($link);
+
+        // check that the page is the right one
+        $this->assertCount(1, $crawler->filter('div.title:contains("Welcome")'));*/
+
         $client = static::createClient();
         $crawler = $client->request('GET', '/login');
 
@@ -93,7 +69,7 @@ class DefaultControllerTest extends WebTestCase
         //---- end correct login flow
 
          //---- logout flow validation
-        // request to /login
+        // request to /admin
         $crawler = $client->request('GET', '/login');
         $logoutLink = $crawler->selectLink('logout')->eq(0)->link();
         $crawler = $client->click($logoutLink); // click logout link
@@ -124,11 +100,87 @@ class DefaultControllerTest extends WebTestCase
         $form = $crawler->selectButton('submit')->form();
         $crawler = $client->submit($form, array());
         $crawler = $client->followRedirect();
-        $this->assertEquals(200, $client->getResponse()->getStatus());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertGreaterThan(0,$crawler->filter('html:contains("Bad credentials")')->count()); 
         // look for the text "Bad credentials"
         //---- end login with missing required fields -->
 
-    }*/
-}
+    }
 
+     public function testSignupAction(Request $request) 
+    {
+        /*$client = static::createClient();
+
+        // goes to the secure page
+        $crawler = $client->request('POST', '/signup');
+
+        // redirects to the signup page
+        $crawler = $client->followRedirect('signup');
+
+        // submits the signup form
+        $form = $crawler->selectButton('form')->form(array('_email' => 'admin', '_password' => 'adminpass', '_firstname' => 'Elmer', '_lastname' => 'Malinao', '_id' => '1'));
+        $client->submit($form);
+
+        // redirect to the original page (but now authenticated)
+        $crawler = $client->followRedirect('dashboard');
+
+        // check that the page is the right one
+        $this->assertCount(1, $crawler->filter('table.title:contains("Username")'));
+
+        // click on the secure link
+        $link = $crawler->selectLink('dashboard')->link();
+        $crawler = $client->click($link);
+
+        // check that the page is the right one
+        $this->assertCount(1, $crawler->filter('div.title:contains("Welcome")'));*/
+    }
+
+    public function testdashboardAction()
+    {   
+  
+    }
+
+    public function testchangePassAction() 
+    {
+        
+    }
+  
+
+    public function testforgotPassAction()
+    {
+        
+    }
+
+    public function testAction() 
+    {
+        
+    }
+
+    public function testresetPassAction() 
+    {
+       
+       
+    }
+
+    /**
+     * Send an verification email
+     */
+    public function testsendEmail($data) 
+    {
+    
+    }
+
+    /**
+     * Activate user account
+     */
+
+    public function testactivateAccountAction() 
+    {
+        
+    }
+
+    public function testdateDiff($date1p, $date2p) 
+    {
+
+    }
+}

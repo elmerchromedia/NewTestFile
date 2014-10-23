@@ -6,7 +6,7 @@ Management\UserBundle\Entity\User:
     properties:
         email:
             - Email:  
-                message: The email {{ value }} is not a valid email.
+                message: The email you have inputted {{ value }} is not a valid email.
                 checkMX: true
             - NotBlank: {message: 'Please enter your desired email address'}
         firstname:
@@ -17,5 +17,4 @@ Management\UserBundle\Entity\User:
             - NotBlank: {message: 'Please enter your desired password'}
             - Length:   
                  min: 6
-                 minMessage: "Your password must be at least {{ limit }} characters long"  
-                
+                 minMessage: "Your password must be at least {{ limit }} characters long" 
