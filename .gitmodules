@@ -1,0 +1,3 @@
+[submodule "vendor/cg-library"]
+	path = vendor/cg-library
+	url = https://github.com/schmittjoh/cg-library.git

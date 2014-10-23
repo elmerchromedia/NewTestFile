@@ -1,0 +1,22 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block title %}Sign Up{% endblock %}
+{% block css %}<link href="{{ asset('css/user.css') }}" rel="stylesheet"> {% endblock %}
+
+{% block body %}
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Change Password</h3>
+    </div>
+    <div class="panel-body">
+      {%if error %}
+      <div class="alert alert-success">
+         {{error}}
+      </div>
+      {%endif%}
+      {{ form(form, {'attr': {'novalidate': 'novalidate' , 'id' : 'formChangePass'}}) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

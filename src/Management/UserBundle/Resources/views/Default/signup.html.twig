@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Individual User Account Sign Up{% endblock %}
+{% block css %}<link href="{{ asset('css/sample.css') }}" rel="stylesheet"> {% endblock %}
+
+{% block body %}
+
+ 
+    <div class="panel-heading">
+      <h3 class="panel-title" style="text-align:center">Individual User Account Sign Up</h3>
+    </div>
+    <div class="panel-body">
+      {%if app.session.flashbag.get('saveuser') %}
+      <div class="alert alert-success">
+         You are successfully registered. Please check your email to activate your account.
+      </div>
+      {%endif%}
+        <div class="container margin-con">
+          {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        </div>
+    </div>
+ 
+
+{% endblock %}

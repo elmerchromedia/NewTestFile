@@ -1,0 +1,57 @@
+{# app/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Test Application{% endblock %}</title>
+        <meta charset="utf-8">
+        <title>Elmer First Symfony2 and Twig Project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="{{asset('bundles/managementuser/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/managementuser/css/bootstrap-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/managementuser/css/parsley/parsley.css')}}" rel="stylesheet">
+        {% block css %} {% endblock %}
+       
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+
+            </div>
+               <ul class="nav navbar-nav">
+                <li id="menu1" class="sr-only" ><a href="dashboard">Edit Account</a></li>
+                <li id="menu2"><a href="changepass">Change Password</a></li>
+              </ul>
+            <div class="navbar-collapse collapse">
+            <div class="navbar-form navbar-right">
+                <a href="logout" class="btn btn-danger logout">Logout </a>
+            </div>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </div>
+        </div>
+        <div class="container margin-con">  
+            <div class="row">
+                {% block body %}{% endblock %}
+            </div>
+            <footer>
+            <p>© Elmer 2014</p>
+        </footer>
+        {% block javascripts %} 
+            {% javascripts 
+                '@ManagementUserBundle/Resources/public/js/jquery.js' 
+                '@ManagementUserBundle/Resources/public/js/bootstrap.js' 
+                '@ManagementUserBundle/Resources/public/js/parsley/parsley.min.js'
+                '@ManagementUserBundle/Resources/public/js/parsley/parsley-standalone.min.js'
+                '@ManagementUserBundle/Resources/public/js/parsley/parsley.extend.min.js'
+            %}
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

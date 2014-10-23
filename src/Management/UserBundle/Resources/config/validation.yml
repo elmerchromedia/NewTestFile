@@ -1,0 +1,21 @@
+Management\UserBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: [email]
+            message: 'This email was already registered'
+    properties:
+        email:
+            - Email:  
+                message: The email {{ value }} is not a valid email.
+                checkMX: true
+            - NotBlank: {message: 'Please enter your desired email address'}
+        firstname:
+            - NotBlank: {message:'Please enter your first name'}    
+        lastname:
+            - NotBlank: {message:'Please enter your last name'}
+        password: 
+            - NotBlank: {message: 'Please enter your desired password'}
+            - Length:   
+                 min: 6
+                 minMessage: "Your password must be at least {{ limit }} characters long"  
+                

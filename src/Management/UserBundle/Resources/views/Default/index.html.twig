@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+{% block css %}<link href="{{ asset('css/sample.css') }}" rel="stylesheet"> {% endblock %}
+
+{% block body %}
+	{% if app.session.flashbag.get('activated') %}  
+		<div class="alert alert-success">You have successfully activated your account. Login now!</div> 
+	{% elseif app.session.flashbag.get('notactivated') %}  
+		<div class="alert alert-danger">Your account was already activated. You can login now.</div> 
+	{% elseif app.session.get('notyetactivated') %}  
+		<div class="alert alert-danger">Your account is not yet activate. Check your email. </div> 
+	{% elseif error %}
+	    <div class="alert alert-danger">{{ error.message }}</div>
+	{% elseif app.session.flashbag.get('resetlinkexpired') %}  
+		<div class="alert alert-danger">Reset link is already expired or already been used. Please request another one. Click here <a href="forgotpass">Forgot Password</a></div> 
+	{% else %}
+		 
+	{%endif%}
+<div class="container">
+	<form action="{{ path('login_check') }}" method="post" class="form-signin" data-validate="parsley">
+			<table width="100%" cellpadding="10" cellspacing="10">
+				<tr style="text-align:center;">
+					<td>Login Now</td>
+				</tr>
+				<tr>
+					<td>{{ form_widget(form.email, { 'attr': {'class': 'input-block-level', 'placeholder': 'Email', 'value': last_username } }) }}</td>
+				</tr>
+				<tr>
+					<td>{{ form_widget(form.password, { 'attr': {'class': 'input-block-level', 'placeholder': 'Password'} }) }}</td>
+				</tr>
+				<tr style="text-align:center;">
+					<td><input type="submit" class="btn btn-large btn-primary" /></td>
+				</tr>
+			</table>
+	</form>
+</div>
+<div class="alert alert-success" style="text-align:center;">Please<a href="signup"> Sign up</a> or <a href="forgotpass"> Forgot Password</a></div>
+{% endblock %}

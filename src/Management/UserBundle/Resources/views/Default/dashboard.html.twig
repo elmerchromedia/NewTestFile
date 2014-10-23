@@ -1,0 +1,9 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block css %}<link href="{{ asset('css/sample.css') }}" rel="stylesheet">{% endblock %}
+{% block body %}<div class="alert alert-success">Welcome back, <strong>{{app.user.firstname}}</strong></div>
+<div class="container">
+	 {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+</div>
+{% endblock %}

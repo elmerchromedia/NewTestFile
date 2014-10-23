@@ -1,0 +1,4 @@
+management_user:
+    resource: "@ManagementUserBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,6 @@
+services:
+     user.userbundle.mapper:
+        class: Management\UserBundle\Mapper\UserMapper
+        arguments: [@doctrine.orm.entity_manager]
+     pw_encoder:
+        class: Management\UserBundle\Service\PasswordHash

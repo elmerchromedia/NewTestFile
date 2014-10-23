@@ -1,0 +1,62 @@
+{# app/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Test Application{% endblock %}</title>
+        <meta charset="utf-8">
+        <title>Elmer First Symfony2 and Twig Project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="{{asset('bundles/managementuser/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/managementuser/css/bootstrap-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/managementuser/css/parsley/parsley.css')}}" rel="stylesheet">
+        {% block css %} 
+          <style type="text/css">
+              body {
+                  padding-top: 40px;
+                  padding-bottom: 40px;
+                  background-color: #5d891a;
+              }
+              .nav{width:100%; height:100%; margin:0 auto; padding:0;}
+              .nav ul{margin:0 auto;}
+              .nav ul li{list-style:none; display:inline-block; text-align:center; margin: 0 150px;}
+              .nav ul li a{color:#000; font-family:tahoma; font-size:13px;}
+              .nav ul li a:hover{color:#fff;}
+              .maincontent{margin:10px auto; padding:0;}
+              .maincontent h1{font-family:tahoma; font-size:22px; color:#ffb802; font-style:italic; text-align: center;}
+          </style>
+        {% endblock %}
+    </head>
+    <body>     
+            <div class="navbar-collapse collapse">
+              {% block loginform%}
+              
+              {% endblock %}
+            </div><!--/.navbar-collapse -->
+          </div>
+        </div>
+        </div>
+        <div class="container margin-con">
+            <div class="row">
+                {% block body %}{% endblock %}
+            </div>
+        <footer>
+            <p>© Elmer 2014</p>
+        </footer>
+        </div>
+         {% block javascripts %} 
+            {% javascripts 
+                '@ManagementUserBundle/Resources/public/js/jquery.js' 
+                '@ManagementUserBundle/Resources/public/js/bootstrap.js' 
+                '@ManagementUserBundle/Resources/public/js/parsley/parsley.min.js'
+                '@ManagementUserBundle/Resources/public/js/parsley/parsley-standalone.min.js'
+                '@ManagementUserBundle/Resources/public/js/parsley/parsley.extend.min.js'
+            %}
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

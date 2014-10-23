@@ -1,0 +1,21 @@
+Management\UserBundle\Entity\ConfirmationUsers:
+    type: entity
+    table: ConfirmationUsers
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userId:
+            type: integer
+        confirmed:
+            type: integer
+        authCode:
+            type: string
+            scale: 100
+        dateSend: 
+            type:timestamp
+
+    lifecycleCallbacks: {  }

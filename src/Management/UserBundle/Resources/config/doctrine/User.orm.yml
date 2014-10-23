@@ -1,0 +1,35 @@
+Management\UserBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: Management\UserBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+            length: '150'
+        password:
+            type: string
+            length: '150'
+        firstname:
+            type: string
+            length: '150'
+        lastname:
+            type: string
+            length: '150'
+        salt:
+            type: string
+            length: '255'
+        status:
+            type: boolean
+        roles:
+            type: array
+        activationCode:
+            type: string
+            length: '255'
+            column: activation_code
+    lifecycleCallbacks: {  }
